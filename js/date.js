@@ -8,35 +8,35 @@ var imgs = [
     {
         img: 'Image/1.jpg',
         title: '天谕',
-        url: 'https://tianyu.163.com'
+        url: '../Mooiq.github.io/wuxia/index.html'
     },
 
     {
         img: 'Image/2.jpg',
         title: '天谕',
-        url: 'https://tianyu.163.com'
+        url: '#'
     },
 
     {
         img: 'Image/3.jpg',
         title: '天谕',
-        url: 'https://tianyu.163.com'
+        url: '#'
     },
     {
         img: 'Image/4.jpg',
         title: '尼尔纪元',
-        url: 'https://tianyu.163.com'
+        url: '#'
     },
 
     {
         img: 'Image/5.jpg',
         title: '尼尔纪元',
-        url: 'https://tianyu.163.com'
+        url: '#'
     },
 
     {
         img: 'Image/6.jpg',
         title: '尼尔纪元',
-        url: 'https://tianyu.163.com'
+        url: '#'
     }
 ];
