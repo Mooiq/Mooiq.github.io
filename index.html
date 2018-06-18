@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <title>My Picture</title>
-    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="js/template.js"></script>
     <script type="text/javascript" src="js/date.js"></script>
 </head>
 <body>
-    <span class="fa fa fa-circle-o-notch fa-spin"></span>
     <ul id="container">
         <!-- <li>
             <a href="" class="box">
@@ -33,11 +31,7 @@
             box.url = imgs[i].url;
             // console.log(imgs.length);
             $('#container').append(box.template);
-        };
-        setTimeout(function(){
-            $('span.fa').fadeOut();
-            $('#container a').css('display', 'block');
-        },2000);
+        }
     })
 </script>
 </html>
