@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title> FlappyBird </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+ </head>
+ <style type="text/css">
+	
+	#wrap{
+			width:288px;
+			height:512px;
+			background:url('./img/bg_day.png') no-repeat;
+			position:relative;
+			overflow:hidden;
+	}
+    #dead{
+            width:288px;
+            height:512px;
+            background:url('./img/dead.jpg') no-repeat;
+            background-size: 100% 100%;
+            position:absolute;
+            display:none;
+            z-index: 1000;
+    }
+    #over{
+            width:204px;
+            height:54px;
+            background:url('./img/text_game_over.png') no-repeat;
+            position:absolute;
+            top:100px;
+            left:42px;
+    }
+	#title{
+			width:178px;
+			height:48px;
+			background:url('./img/title.png') no-repeat;
+			position:absolute;
+			left:55px;
+			top:50px;
+	}
+	@keyframes bird{
+			0%{
+			background:url('./img/bird0_0.png') no-repeat;
+			}
+			50%{
+			background:url('./img/bird0_1.png') no-repeat;
+			}
+			100%{
+			background:url('./img/bird0_2.png') no-repeat;
+			}
+	}
+	@keyframes move{
+			0%{
+				left:120px;
+				top:100px;	
+				background:url('./img/bird0_0.png') no-repeat;
+			}
+			
+			25%{
+				left:120px;
+				top:110px;	
+				background:url('./img/bird0_1.png') no-repeat;
+			}
+			50%{
+				left:120px;
+				top:120px;	
+				background:url('./img/bird0_2.png') no-repeat;
+			}
+			75%{
+				left:120px;
+				top:110px;	
+				background:url('./img/bird0_1.png') no-repeat;
+			}
+			100%{
+				left:120px;
+				top:100px;	
+				background:url('./img/bird0_0.png') no-repeat;
+			}
+	}
+	#log{
+			width:48px;
+			height:48px;
+			position:absolute;
+			animation:1s  move linear infinite;
+	}
+	#star{
+			width:116px;
+			height:70px;
+			background:url('./img/button_play.png') no-repeat;
+			position:absolute;
+			left:86px;
+			top:260px;
+			cursor:pointer;
+	}
+	@keyframes landmove{
+			0%{
+				left:0;
+			}
+			100%{
+				left:-288px;
+			}
+	}
+	#land{
+			width:576px;
+			height:112px;
+			background:url('./img/land.png') repeat-X;
+			position:absolute;
+			bottom:0;
+			animation:2s landmove linear infinite;
+			z-index:100;
+	}
+	#bird{
+			width:48px;
+			height:48px;
+			position:absolute;
+			left:30px;
+			top:110px;
+			animation:0.5s bird linear infinite;
+			display:none;
+	}
+	.pipe_box{
+			width:52px;
+			height:100%;
+			position:absolute;
+			left:288px;
+	}
+	.pipe_top{
+			height:320px;
+			width:52px;
+			position:absolute;
+			background:url('./img/pipe_down.png') no-repeat;
+	}
+	.pipe_bottom{
+			height:320px;
+			width:52px;
+			position:absolute;
+			background:url('./img/pipe_up.png') no-repeat;
+	}
+ </style>
+
+ <body>
+ <div id="wrap">
+		<div id="title"></div>
+		<div id="star"></div>
+		<div id="log"></div>
+		<div id="land"></div>
+		<div id="bird"></div>
+		<!-- <div class="pipe_box">
+				<div class="pipe_top"></div>
+				<div class="pipe_bottom"></div>
+		</div> -->
+        <div id="dead">
+            <div id="over"></div>
+        </div>
+	
+ </div>
+  
+ </body>
+ <script>
+ 
+		var wrap=document.getElementById('wrap');
+		var title=document.getElementById('title');
+		var star=document.getElementById('star');
+		var log=document.getElementById('log');
+		var bird=document.getElementById('bird');
+        var dead=document.getElementById('dead');
+		var y=1;
+		var col=0;
+		var pipe_s;
+		var i=0;
+//
+		var arr=new Array();
+		function pipe_val(top,bottom,box){
+				this.Pipe_t=top;
+				this.Pipe_b=bottom;
+				this.Pipe_c=box;
+		}
+
+		star.onclick=function(){
+				title.style.display='none';
+				star.style.display='none';
+				log.style.display='none';
+				bird.style.display='block';
+				bird_down();
+				wrap.onclick=function(){	bird_up();	};
+				pipe();
+				
+		}
+//鸡儿降落
+		function bird_down(){				
+				var bd=setInterval(function(){
+						y+=0.3;
+						bird.style.top=bird.offsetTop+y+'px';
+						if(bird.offsetTop>=363){
+								bird.style.top=363+'px';
+								clearInterval(bd);
+							}
+				},30)
+		}
+//鸡儿点击时上升，这里使全局y变量为负值，其实还是借助下降的定时器
+		function bird_up(){				
+				if(bird.offsetTop>=363){
+						dead.style.display="block";
+				}else{
+					y=-4;
+				}
+		}
+//管子创建、移动；
+		function pipe(){
+				var creat_pipe=setInterval(function(){
+						var x=ran(-110, -250);
+						var pipe_box = document.createElement('div');
+						pipe_box.className='pipe_box';
+						wrap.appendChild(pipe_box);
+						var pipe_top = document.createElement('div');
+						pipe_top.className='pipe_top';
+						pipe_box.appendChild(pipe_top);
+							pipe_top.style.top=x+'px';
+						var pipe_bottom = document.createElement('div');
+						pipe_bottom.className='pipe_bottom';
+						pipe_box.appendChild(pipe_bottom);
+							pipe_bottom.style.top=320+x+120+'px';
+						col++;
+			//把新建的管子数据存入数组
+			    		pipe_s=new pipe_val(pipe_top,pipe_bottom,pipe_box);
+						arr.push(pipe_s);
+					  
+						
+			//移动再开一个计时器，碰撞检测
+						var pipe_move=setInterval(function(){
+						pipe_box.style.left=pipe_box.offsetLeft-1+'px';
+							for(i=0;i<arr.length;i++){
+									if(arr[i].Pipe_c.offsetLeft==bird.offsetLeft+bird.offsetWidth-10&&(bird.offsetTop<arr[i].Pipe_t.offsetTop+320-14||bird.offsetTop+20>arr[i].Pipe_b.offsetTop))
+										{dead.style.display="block";}
+										else if(bird.offsetLeft+bird.offsetWidth-7>=arr[i].Pipe_c.offsetLeft&&bird.offsetLeft+7<=arr[i].Pipe_c.offsetLeft+arr[i].Pipe_c.offsetWidth&&(bird.offsetTop<=arr[i].Pipe_t.offsetTop+320-14||bird.offsetTop+20>=arr[i].Pipe_b.offsetTop))
+											{dead.style.display="block";}
+							}
+						},30);	
+
+			//换wrap等背景		
+						if(col%10==0){
+					wrap.style.backgroundImage='url(./img/bg_night.png)';
+					}
+
+
+				},5000)
+			
+		}
+//随机数来确定管子高度
+		function ran(max, min){
+				return min+Math.round(Math.random()*(max-min));
+		}
+ </script>
+</html>

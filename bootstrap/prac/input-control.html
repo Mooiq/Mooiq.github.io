@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>input</title>
+        <script src="../jquery-3.2.1.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="../bootstrap.min.css" />
+        <script src="../bootstrap.min.js" type="text/javascript"></script>
+    </head>
+    
+    <body>
+        <div class="container">
+            <h1>BootStrap 表单</h1>
+
+        <form action="" class="form-inline">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input type="text" class="form-control" placeholder="form.form-inline"/>
+                    <div class="input-group-addon">.00</div>
+                </div>
+            </div>
+
+                <hr />
+
+            <button type="submit" class="btn btn-primary">确认</button>
+            <button type="reset" class="btn btn-danger">取消</button>
+        </form>
+
+        </div>
+
+        <hr />
+        <div class="container">
+            <h1 class="col-md-offset-5">左右样式</h1>
+
+        <form action="" class="form-horizontal">
+            <div class="form-group">
+                <label for="" class="col-md-2 control-label" >用户名</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" placeholder="由于col-md属性 在小屏幕上会变成上下"/>                      
+                </div>
+            </div>
+
+            <div class="form-group has-error">  
+                <label for="" class="col-md-2 control-label">密码</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" placeholder="给外层div.form-group加上has-error/success/waring来改变颜色"/>                    
+                </div>
+            </div>
+
+            <div class="form-group has-success has-feedback">  
+                <label for="" class="col-md-2 control-label">密码</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" placeholder="给外层div.form-group加上has-feedback然后给span符号加上form-control-feedback"/>
+                    <span class="glyphicon glyphicon-ok form-control-feedback"></span>  
+                    <p class="help-block">我是Help Text我的类是help-block</p>                 
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                    <div class="input-group-addon">$</div>
+                    <input type="text" class="form-control" placeholder="input-group-lg"/>
+                    <div class="input-group-addon">.00</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input type="text" class="form-control" placeholder=""/>
+                    <div class="input-group-addon">.00</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-addon">$</div>
+                    <input type="text" class="form-control" placeholder="input-group-sm"/>
+                    <div class="input-group-addon">.00</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <input type="checkbox" />
+                    </div>
+                    <input type="text" class="form-control" placeholder=""/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <input type="radio" name="dian"/>
+                    </div>
+                    <input type="text" class="form-control" placeholder=""/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <input type="radio" name="dian"/>
+                    </div>
+                    <input type="text" class="form-control" placeholder=""/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                       <button class="btn btn-info">GO!</button>
+                    </div>
+                    <input type="text" class="form-control" placeholder=""/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder=""/>
+                    <div class="input-group-btn">
+                       <button class="btn btn-warning">GO!</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">下拉<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li role="separator" class="divider"></li>
+                        <li>4</li>
+                    </ul>
+                </div>
+                <input type="text" class="form-control"/>
+            </div>
+
+            <div class="input-group">
+                
+                <input type="text" class="form-control"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">下拉<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li role="separator" class="divider"></li>
+                        <li>4</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-md-offset-2">
+                <button type="submit" class="btn btn-primary">确认</button>
+                <button type="reset" class="btn btn-danger">取消</button>    
+            </div>
+            
+        </form>
+
+        </div>
+    </body>
+</html>

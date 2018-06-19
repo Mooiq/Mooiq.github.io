@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>无缝的轮番图</title>
+        <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+    </head>
+    <style type="text/css">
+        div.diswrap{
+            width: 1140px;
+            height: 400px;
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        div.diswrap div.wrap{
+            width: 3000px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .wrap img{
+            float: left;
+        }
+
+        div.diswrap div.paging{
+            position: absolute;
+            right: 100px;
+            bottom: 20px;
+        }
+        div.diswrap div.paging a{
+            text-decoration: none;
+            padding:0 5px;
+            margin-right: 5px;
+            border-radius: 3px;
+            color: #fff;
+        }
+        div.diswrap div.paging a.active{
+            color: #fff;
+            background: #555;
+            font-weight: bolder;
+        }
+    </style>
+    
+    <body>
+        <h1 class="page-header">无缝轮番图</h1>
+
+        <div class="diswrap">
+            <div class="wrap">
+                <img src="./Image/s1.jpg" height="400" width="1140" alt="" />
+                <img src="./Image/s2.jpg" height="400" width="1140" alt="" />
+                <img src="./Image/s3.jpg" height="400" width="1140" alt="" />
+                <img src="./Image/s4.jpg" height="400" width="1140" alt="" />
+                <img src="./Image/s1.jpg" height="400" width="1140" alt="" />
+            </div>
+            <div class="paging">
+                <a class="active" href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+            </div>
+        </div>
+    
+
+    <script type="text/javascript">
+    // 淡入淡出轮番
+        // function Tabwrap(){
+        //     timer = setInterval(function(){
+        //     $('.wrap img').eq(2).stop().fadeOut('400', function() {
+        //         $(this).prependTo('.wrap').show();
+        //     });
+        // }, 3000)
+        // }
+        // Tabwrap();
+        // $('.wrap').hover(function() {
+        //     clearInterval(timer);
+        // }, function() {
+        //     Tabwrap();
+        // });
+        
+
+
+        
+
+//滑动
+        var timer;  //计时器
+        var cur = 1;  //图片和按钮状态标记
+        var MoveImg = $('.wrap img').eq(cur-1);  //当前图片
+        var ImgWid = MoveImg.width();   //当前图片的宽度
+        var ImgNum = $('.wrap img').length;  //图片的数量
+        // alert(ImgWid);
+        // alert($('.paging a').length);
+        
+    //设置img父容器宽度
+    $('.wrap').width(ImgNum * ImgWid);
+
+    //图片和控制流滑动
+        function action(){
+            $('.wrap').animate({left: '-'+ImgWid*cur}, 500);
+            //控制、标记控制按钮,如果cur到最后(伪第一)的时候，判断给控制按钮加'active',并且让wrap的left归0
+            if (cur >= ImgNum-1) {
+                $('.paging a').eq(0).addClass('active').siblings().removeClass('active');
+                $('.wrap').animate({left: 0}, 0); //这里用css设置不了left，大概left正在执行animate
+                cur = 0;
+            }else{
+                $('.paging a').eq(cur).addClass('active').siblings().removeClass('active');
+            };
+            cur++;
+        }
+    //设置定时器
+        timer = setInterval(function(){
+            action();
+        }, 3000);
+    //控制按钮点击
+        $('.paging a').click(function(event) {
+            //这里的index与cur的取值相吻合 方便用action函数
+            //为了第一张可以从最后一张右侧划出来，再做一个判断
+            if ((cur == ImgNum-1)&&($(this).index() == 0)) {
+                action();
+            }else{
+                cur = $(this).index();  
+                action();
+            }
+        });
+    //鼠标悬停
+        $('.diswrap').hover(function() {
+            clearInterval(timer);
+        }, function() {
+            timer = setInterval(function(){
+            action();
+            }, 3000);
+        });
+    </script>
+
+    </body>
+</html>

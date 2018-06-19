@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style type="text/css">
+        html,body{
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <body>
+        <canvas id="canvas">浏览器不支持！</canvas>
+
+    <script type="text/javascript">
+
+    var sX = window.innerHeight;
+    var sY = window.innerWidth;
+    
+    const c = document.getElementById('canvas');
+    const ctx = c.getContext("2d");
+    c.width = sY;
+    c.height = sX;
+    c.style.background = '#000';
+    
+
+    window.onresize = function() {
+        var sX = window.innerHeight;
+        var sY = window.innerWidth;
+        c.width = sY;
+        c.height = sX;
+    }
+//球类
+    class Ball{
+        // 构造器
+        constructor(x ,y ,color) {
+            this.x = x;
+            this.y = y;
+            this.color = color;
+            this.r = 40;
+        }
+        // 绘制小球
+        render(){
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+//移动球类
+    //继承Ball，再添加一些自己的属性和方法
+    class moveBall extends Ball{
+        constructor(x, y, color){
+            super(x, y, color);
+
+        //小球移动增量
+        this.dX = parseInt(Math.random()*10-5);//[-5,5]
+        this.dY = parseInt(Math.random()*10-5);//[-5,5]
+        this.dR = parseInt(Math.random()*2+1);//[0,3]
+        }
+        //数据更新
+        upData(){
+
+            // this.dX = parseInt(Math.random()*10-5);//[-5,5]
+            // this.dY = parseInt(Math.random()*10-5);//[-5,5]
+            // this.dR = parseInt(Math.random()*2+1);//[0,3]
+
+            this.x += this.dX;
+            this.y += this.dY;
+            this.r -= this.dR;
+            if (this.r < 0) {this.r = 0};
+        }
+
+    }
+
+//实例化小球
+    let ballArr = [];
+    let colorArr = ['red','green','blue','yellow','orange','pink','purple'];
+
+//监听鼠标移动，实例放入数组
+    canvas.addEventListener('mousemove', function(e){
+        // let ball = new moveBall(e.offsetX, e.offsetY, colorArr[parseInt(Math.random()*(aolorArr.length-1)]);
+        // console.log(e.offsetX);
+        ballArr.push(new moveBall(e.offsetX, e.offsetY, colorArr[parseInt(Math.random()*(colorArr.length))]));
+        // console.log(ballArr);
+    })
+
+//设置定时器 不停遍历数组 绘制小球 改变小球属性
+    setInterval(function(){
+
+        //清屏
+        
+        //第一种提供方法
+        ctx.clearRect(0, 0, c.width, c.height);
+        
+        //第二种重设canvas宽高时 自动清屏
+        // c.height = c.height;
+        for (let i = 0, m = ballArr.length; i < m; i++){
+            
+            ballArr[i].render();
+            ballArr[i].upData();
+           
+        }
+        console.log(ballArr.length);
+    },50);
+
+
+
+
+
+
+
+
+
+let arr =['apple','orange','banana'];
+console.log(arr);
+// arr.pop();
+// console.log(arr);
+// arr.shift()
+// console.log(arr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // setInterval(function(){
+    //     let ball = new moveBall(50, 50 , 'red');
+    //     ballArr.push(ball);
+    //     ball.upData();
+    //     console.log(ball);
+    // }, 50)
+
+
+    // let ball = new Ball(50, 50 , 'red');
+    // ball.render();
+    // console.log(ball);
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+    </body>
+</html>

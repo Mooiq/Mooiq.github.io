@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>图片轮番</title>
+    <script type="text/javascript" src="./js/jquery-3.2.1.js"></script>
+</head>
+<style type="text/css">
+    body,html{
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .img-box{
+        width: 1200px;
+        height: 300px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .img-box ul.img-ul li img{
+        width: 1200px;
+        height: 300px;
+    }
+    .img-box ul.img-ul li{
+        width: 1200px;
+        height: 300px;
+        position:absolute;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+    .img-box ul.img-ul li:nth-child(1){
+        display: block;
+    }
+    .img-box ul.img-ra{
+        width: 150px;
+        height: 30px;
+        background: #fff;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 15px;
+    }
+    .img-box ul.img-ra li{
+        float: left;
+        width: 25%;
+        height: 30px;
+        
+    }
+    .img-box ul.img-ra li div{
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background: #ccc;
+        margin: 0 auto;
+        margin-top: 8px;
+        cursor: pointer;
+    }
+    .img-box ul.img-ra li div.cur{
+        background: #73c5f4;
+    }
+</style>
+<body>
+    <div class="img-box">
+        <ul class="img-ul">
+            <li><a href="" title=""><img src="./Image/d.jpg" alt="" /></a></li>
+            <li><a href="" title=""><img src="./Image/a.jpg" alt="" /></a></li>
+            <li><a href="" title=""><img src="./Image/b.jpg" alt="" /></a></li>
+            <li><a href="" title=""><img src="./Image/c.jpg" alt="" /></a></li>
+        </ul>
+        <ul class="img-ra">
+            <li><div class="cur"></div></li>
+            <li><div></div></li>
+            <li><div></div></li>
+            <li><div></div></li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        var thisindex = 0;
+        var rindex;
+        var t = setInterval(function(){
+            solider()
+        }, 2000);
+        function solider(){
+            if (thisindex > 3) {thisindex = 0};
+            $('.img-ul li').eq(thisindex).fadeIn(300).siblings('.img-ul li').fadeOut(300);
+
+            $('.img-ra li').each(function(){
+                rindex = $(this).index();
+                // console.log(rindex);
+                if (thisindex == rindex) {
+                    $('.img-ra li div').removeClass('cur');
+                    $(this).children('div').addClass('cur');
+                };
+            });
+
+            thisindex++;
+        }
+        $('.img-box').hover(function() {
+            clearInterval(t);
+        }, function() {
+            t = setInterval(function(){
+                solider()
+            }, 2000);
+        });
+
+        $('.img-ra li').hover(function(){
+            thisindex = $(this).index();
+            $('.img-ul li').eq(thisindex).fadeIn(300).siblings('.img-ul li').fadeOut(300);
+            $('.img-ra li div').removeClass('cur');
+            $(this).children('div').addClass('cur');
+        },function(){
+
+        });
+
+    })
+    </script>
+</html>

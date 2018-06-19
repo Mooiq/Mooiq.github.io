@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>My Picture</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="js/template.js"></script>
+    <script type="text/javascript" src="js/date.js"></script>
+</head>
+<body>
+    <span class="fa fa fa-circle-o-notch fa-spin"></span>
+    <ul id="container">
+        <!-- <li>
+            <a href="" class="box">
+                <div class="img-box">
+                    <img src="Image/1.jpg" alt="" />
+                </div>
+                <div class="info-box">
+                    <span class="le">这是第一张图片</span>
+                    <span class="ri">进入详情页</span>
+                </div>
+            </a>
+        </li> -->
+    </ul>
+</body>
+<script type="text/javascript">
+    $(function(){
+        for (var i = 0; i < imgs.length; i++) {
+            box.img = imgs[i].img;
+            box.title = imgs[i].title;
+            box.url = imgs[i].url;
+            console.log(imgs.length);
+            $('#container').append(box.template);
+        }
+    })
+</script>
+</html>
