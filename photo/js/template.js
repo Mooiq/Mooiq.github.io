@@ -13,7 +13,7 @@ var box = {
     template: function(){
         return(
             '<li>'+
-            '<a onmouseover="box.mouseOver(this)" onmouseout="box.mouseOut(this)" target="_blank" href="'+ box.url +'" class="box">'+
+            '<a onmouseover="box.mouseOver(this)" onmouseout="box.mouseOut(this)" href="'+ box.url +'" class="box">'+
                 '<div class="img-box">'+
                     '<img src="'+ box.img +'" alt="" />'+
                 '</div>'+

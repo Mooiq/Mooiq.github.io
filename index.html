@@ -54,59 +54,9 @@
 </style>
 <body>
    <div id="colum" class="colum">
-   	<!-- <div class="caption">
-			<h4 class="title first-title" onclick="showUl(this)">My first title</h4>
-				<ul class="second-ul">
-					<a href="#"><li class="title second-title animated">1</li></a>
-					<a href="#"><li class="title second-title animated">2</li></a>
-					<a href="#"><li class="title second-title animated">3</li></a>
-				</ul>
-		</div> -->
    </div>
 </body>
 	<script>
-	// var showUl =function(data){
-	// 	// 获取点击标签的下个兄弟标签
-	// 	// alert(data.nextElementSibling.className);
-	// 	var secondUl = data.nextElementSibling;
-	// 	//给二级标题添加/移除样式
-	// 	// 获取二级标签
-	// 	var secondTitle = secondUl.getElementsByTagName('li');
-	// 	var secondTitleNums = secondTitle.length;
-	// 	// 给secondUl固定高
-	// 	secondUl.style.height = secondTitleNums*40 +'px';
-	// 	if (secondUl.style.display == 'block') {
-	// 		// 给二级标签移除进入样式，添加离开样式
-	// 		if (secondTitleNums) {
-	// 			for (let i = secondTitleNums - 1; i >= 0; i--) {
-	// 				setTimeout(function(){
-	// 					// console.log(i);
-	// 					secondTitle[i].classList.remove('bounceInRight');
-	// 					secondTitle[i].classList.add('bounceOutLeft');
-	// 				}, i*300);
-	// 				setTimeout(function(){
-	// 					secondTitle[i].style.display = 'none';
-	// 					secondUl.style.display = 'none';
-	// 				}, secondTitleNums*300+100);// --、先这样把...
-	// 			}
-	// 		}
-	// 		// secondUl.style.display = 'none';
-	// 	}else{
-	// 		secondUl.style.display = 'block';
-	// 		// 如果有二级标签，添加进入样式
-	// 		// alert(secondTitle.length);
-	// 		if (secondTitleNums) {
-	// 			for (let i = secondTitleNums - 1; i >= 0; i--) {
-	// 				setTimeout(function(){
-	// 					// console.log(i);
-	// 					secondTitle[i].classList.remove('bounceOutLeft');
-	// 					secondTitle[i].classList.add('bounceInRight');
-	// 					secondTitle[i].style.display = 'block';
-	// 				}, i*300)
-	// 			}
-	// 		}
-	// 	};
-	// }
 	for (var i = 0; i < CaptionTpts.length; i++) {
 		CaptionTpt.FirstTitle = CaptionTpts[i].FirstTitle;
 		CaptionTpt.SecondTitle = CaptionTpts[i].SecondTitle;
