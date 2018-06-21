@@ -43,7 +43,8 @@ CaptionTpts = [
 	{
 		FirstTitle:'仿写的页面',
 		SecondTitle:[
-			{name:'Vue仿haha.mx',href:'./haha/dist/index.html'}
+				{name:'肉多多',href:'./rouduo/index.html'},
+				{name:'Vue仿haha.mx',href:'./haha/dist/index.html'}
 			]
 		
 	},
