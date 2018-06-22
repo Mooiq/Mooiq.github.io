@@ -44,7 +44,8 @@ CaptionTpts = [
 		FirstTitle:'我的作品',
 		SecondTitle:[
 				{name:'肉多多',href:'./rouduo/index.html'},
-				{name:'Vue仿haha.mx',href:'./haha/dist/index.html'}
+				{name:'Vue仿haha.mx',href:'./haha/dist/index.html'},
+				{name:'美团点餐页',href:'./mt-app/dist/index.html'}
 			]
 		
 	},
