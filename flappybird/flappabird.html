@@ -6,19 +6,23 @@
   <meta name="author" content="" />
   <meta name="keywords" content="" />
   <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
  </head>
  <style type="text/css">
-	
+	body {
+		margin: 0;
+	}
 	#wrap{
-			width:288px;
-			height:512px;
+			width:100vw;
+			height:100vh;
 			background:url('./img/bg_day.png') no-repeat;
+			background-size: cover;
 			position:relative;
 			overflow:hidden;
 	}
     #dead{
-            width:288px;
-            height:512px;
+            width:100vw;
+            height:100vh;
             background:url('./img/dead.jpg') no-repeat;
             background-size: 100% 100%;
             position:absolute;
@@ -34,11 +38,12 @@
             left:42px;
     }
 	#title{
-			width:178px;
-			height:48px;
+			width:230px;
+			height:62px;
 			background:url('./img/title.png') no-repeat;
+			background-size: cover;
 			position:absolute;
-			left:55px;
+			left:calc(50% - 115px);
 			top:50px;
 	}
 	@keyframes bird{
@@ -54,29 +59,29 @@
 	}
 	@keyframes move{
 			0%{
-				left:120px;
-				top:100px;	
+				left:calc(50% - 24px);
+				top:120px;	
 				background:url('./img/bird0_0.png') no-repeat;
 			}
 			
 			25%{
-				left:120px;
-				top:110px;	
+				left:calc(50% - 24px);
+				top:130px;	
 				background:url('./img/bird0_1.png') no-repeat;
 			}
 			50%{
-				left:120px;
-				top:120px;	
+				left:calc(50% - 24px);
+				top:140px;	
 				background:url('./img/bird0_2.png') no-repeat;
 			}
 			75%{
-				left:120px;
-				top:110px;	
+				left:calc(50% - 24px);
+				top:130px;	
 				background:url('./img/bird0_1.png') no-repeat;
 			}
 			100%{
-				left:120px;
-				top:100px;	
+				left:calc(50% - 24px);
+				top:120px;	
 				background:url('./img/bird0_0.png') no-repeat;
 			}
 	}
@@ -85,13 +90,14 @@
 			height:48px;
 			position:absolute;
 			animation:1s  move linear infinite;
+			
 	}
 	#star{
 			width:116px;
 			height:70px;
 			background:url('./img/button_play.png') no-repeat;
 			position:absolute;
-			left:86px;
+			left:calc(50% - 58px);
 			top:260px;
 			cursor:pointer;
 	}
@@ -100,12 +106,12 @@
 				left:0;
 			}
 			100%{
-				left:-288px;
+				left:-100vw;
 			}
 	}
 	#land{
-			width:576px;
-			height:112px;
+			width:200vw;
+			height:14vh;
 			background:url('./img/land.png') repeat-X;
 			position:absolute;
 			bottom:0;
@@ -125,16 +131,16 @@
 			width:52px;
 			height:100%;
 			position:absolute;
-			left:288px;
+			left:100vw;
 	}
 	.pipe_top{
-			height:320px;
+			height:100vh;
 			width:52px;
 			position:absolute;
 			background:url('./img/pipe_down.png') no-repeat;
 	}
 	.pipe_bottom{
-			height:320px;
+			height:100vh;
 			width:52px;
 			position:absolute;
 			background:url('./img/pipe_up.png') no-repeat;
@@ -167,6 +173,7 @@
 		var log=document.getElementById('log');
 		var bird=document.getElementById('bird');
         var dead=document.getElementById('dead');
+        var land=document.getElementById('land');
 		var y=1;
 		var col=0;
 		var pipe_s;
@@ -189,18 +196,20 @@
 				pipe();
 				
 		}
-//¼¦¶ù½µÂä
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		function bird_down(){				
 				var bd=setInterval(function(){
 						y+=0.3;
 						bird.style.top=bird.offsetTop+y+'px';
-						if(bird.offsetTop>=363){
-								bird.style.top=363+'px';
+
+						if(bird.offsetTop>=land.offsetTop - 47){
+								bird.style.bottom=land.offsetTop - 47 +'px';
+								dead.style.display="block";
 								clearInterval(bd);
 							}
 				},30)
 		}
-//¼¦¶ùµã»÷Ê±ÉÏÉý£¬ÕâÀïÊ¹È«¾Öy±äÁ¿Îª¸ºÖµ£¬ÆäÊµ»¹ÊÇ½èÖúÏÂ½µµÄ¶¨Ê±Æ÷
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹È«ï¿½ï¿½yï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½Ä¶ï¿½Ê±ï¿½ï¿½
 		function bird_up(){				
 				if(bird.offsetTop>=363){
 						dead.style.display="block";
@@ -208,7 +217,7 @@
 					y=-4;
 				}
 		}
-//¹Ü×Ó´´½¨¡¢ÒÆ¶¯£»
+//ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½
 		function pipe(){
 				var creat_pipe=setInterval(function(){
 						var x=ran(-110, -250);
@@ -224,12 +233,12 @@
 						pipe_box.appendChild(pipe_bottom);
 							pipe_bottom.style.top=320+x+120+'px';
 						col++;
-			//°ÑÐÂ½¨µÄ¹Ü×ÓÊý¾Ý´æÈëÊý×é
+			//ï¿½ï¿½ï¿½Â½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			    		pipe_s=new pipe_val(pipe_top,pipe_bottom,pipe_box);
 						arr.push(pipe_s);
 					  
 						
-			//ÒÆ¶¯ÔÙ¿ªÒ»¸ö¼ÆÊ±Æ÷£¬Åö×²¼ì²â
+			//ï¿½Æ¶ï¿½ï¿½Ù¿ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½ï¿½
 						var pipe_move=setInterval(function(){
 						pipe_box.style.left=pipe_box.offsetLeft-1+'px';
 							for(i=0;i<arr.length;i++){
@@ -240,7 +249,7 @@
 							}
 						},30);	
 
-			//»»wrapµÈ±³¾°		
+			//ï¿½ï¿½wrapï¿½È±ï¿½ï¿½ï¿½		
 						if(col%10==0){
 					wrap.style.backgroundImage='url(./img/bg_night.png)';
 					}
@@ -249,7 +258,7 @@
 				},5000)
 			
 		}
-//Ëæ»úÊýÀ´È·¶¨¹Ü×Ó¸ß¶È
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ß¶ï¿½
 		function ran(max, min){
 				return min+Math.round(Math.random()*(max-min));
 		}
