@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V你蓝瓶</title>
+</head>
+<style type="text/css">
+    :root {
+  --kfc-red: #d8121b;
+  --kfc-dark-red: #a73c36;
+  --kfc-highlight-red: #f00;
+  --kfc-yellow: #f3c72d;
+  --kfc-black: #000;
+  --kfc-white: #fff;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(var(--kfc-dark-red), var(--kfc-red), var(--kfc-dark-red));
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.coupon {
+  width: 600px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  background-color: var(--kfc-white);
+  color: var(--kfc-black);
+}
+
+.coupon h1 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+}
+
+.coupon p {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  line-height: 1.5;
+}
+
+.coupon button {
+  padding: 10px 20px;
+  font-size: 1.5em;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: var(--kfc-red);
+  color: var(--kfc-white);
+}
+
+.coupon button:hover {
+  background-color: var(--kfc-highlight-red);
+}
+
+.blue-screen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #0000aa;
+  color: #ffffff;
+  font-family: "Courier New", Courier, monospace;
+  display: none;
+}
+</style>
+<body>
+    <div class="container">
+        <div class="coupon">
+            <h1>V你蓝瓶 优惠码</h1>
+            <p>使用优惠码KFC-0000AA，即可免费获得蓝瓶套餐。</p>
+            <button id="getBtn">立即领取</button>
+        </div>
+    </div>
+    
+    <div id="blueScreen" class="blue-screen">
+        <h1>A problem has been detected and Windows has been shut down to prevent damage to your computer.</h1>
+        <p>If this is the first time you've seen this Stop error screen, restart your computer. If this screen appears
+            again, follow these steps:</p>
+        <p>Check to make sure any new hardware or software is properly installed. If this is a new installation, ask your
+            hardware or software manufacturer for any Windows updates you might need.</p>
+        <p>If problems continue, disable or remove any newly installed hardware or software. Disable BIOS memory options
+            such as caching or shadowing. If you need to use Safe Mode to remove or disable components, restart your
+            computer, press F8 to select Advanced Startup Options, and then select Safe Mode.</p>
+        <p>Technical information:</p>
+        <p>*** STOP: 0x0000007B (0xF78D2524,0xC0000034,0x00000000,0x00000000)</p>
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        let getBtn = document.getElementById('getBtn')
+        let blueScreen = document.getElementById('blueScreen')
+
+        getBtn.addEventListener('click', () => {
+            blueScreen.style.display = 'block'
+            if (blueScreen.requestFullscreen) {
+                blueScreen.requestFullscreen();
+            } else if (blueScreen.webkitRequestFullscreen) {
+                blueScreen.webkitRequestFullscreen();
+            } else if (blueScreen.msRequestFullscreen) {
+                blueScreen.msRequestFullscreen();
+            }
+        })
+
+
+        blueScreen.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                blueScreen.style.display = 'none'
+            }
+        })
+    }
+</script>
+</html>
